@@ -1,0 +1,57 @@
+  
+  service: cupido-api
+
+  
+  package:
+    individually: true
+
+  plugins:
+    - serverless-bundle 
+    - serverless-offline
+    - serverless-dotenv-plugin 
+    - serverless-bundle
+
+  provider:
+    name: aws
+    runtime: nodejs12.x
+    stage: prod
+    region: us-east-1
+   
+    environment:
+      userTable: users
+      messageTable: messages
+      
+
+
+  
+  iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Scan
+          - dynamodb:Query
+          - dynamodb:GetItem
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:DeleteItem
+          - dynamodb:DescribeTable
+        Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
+  functions:  
+    create:
+      handler: src/functions/create.main
+      events:
+        - http:
+            path: users
+            method: post
+    list:
+      handler: src/functions/list.main
+      events:
+        - http:
+            path: users/{userId}
+            method: get
+    delete:
+      handler: src/functions/delete.main
+      events:
+        - http:
+            path: users/{userId}
+            method: delete
