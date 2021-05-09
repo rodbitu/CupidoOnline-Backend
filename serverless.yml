@@ -25,16 +25,16 @@
 
   
   iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - dynamodb:Scan
-          - dynamodb:Query
-          - dynamodb:GetItem
-          - dynamodb:PutItem
-          - dynamodb:UpdateItem
-          - dynamodb:DeleteItem
-          - dynamodb:DescribeTable
-        Resource: "arn:aws:dynamodb:us-east-1:*:*"
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:Query
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:DescribeTable
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
   functions:  
     create:
@@ -43,15 +43,18 @@
         - http:
             path: users
             method: post
+            authorizer: aws_iam
     list:
       handler: src/functions/list.main
       events:
         - http:
             path: users/{userId}
             method: get
+            authorizer: aws_iam
     delete:
       handler: src/functions/delete.main
       events:
         - http:
             path: users/{userId}
             method: delete
+            authorizer: aws_iam
