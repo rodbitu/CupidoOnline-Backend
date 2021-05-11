@@ -50,6 +50,8 @@
         - http:
             path: messages/{id}
             method: get
+            cors: true
+            authorizer: aws_iam
     list:
       handler: src/functions/list.main
       events:
@@ -64,6 +66,8 @@
         - http:
             path: messages/{id}
             method: put
+            cors: true
+            authorizer: aws_iam
     delete:
       handler: src/functions/delete.main
       events:
