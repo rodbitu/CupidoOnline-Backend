@@ -18,8 +18,7 @@
     region: us-east-1
    
     environment:
-      userTable: users
-      messageTable: messages
+      tableName: messages
       
 
 
@@ -41,23 +40,35 @@
       handler: src/functions/create.main
       events:
         - http:
-            path: users
+            path: messages
             method: post
             cors: true
             authorizer: aws_iam
+    get: 
+      handler: src/functions/get.main
+      events:
+        - http:
+            path: messages/{id}
+            method: get
     list:
       handler: src/functions/list.main
       events:
         - http:
-            path: users/{userId}
+            path: messages
             method: get
             cors: true
             authorizer: aws_iam
+    update: 
+      handler: src/functions/update.main
+      events:
+        - http:
+            path: messages/{id}
+            method: put
     delete:
       handler: src/functions/delete.main
       events:
         - http:
-            path: users/{userId}
+            path: messages/{id}
             method: delete
             cors: true
             authorizer: aws_iam

@@ -5,13 +5,14 @@ import dynamoDb from "../../libs/dynamodb-lib";
 export const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: process.env.userTable,
+    TableName: process.env.tableName,
     Item: {
-      id: uuid.v4(),
-      userId: event.requestContext.identity.cognitoIdentityId,
-      content: data.content,
-      attachment: data.attachment,
-      createdAt: Date.now(),
+      // The attributes of the item to be created
+      userId: "123", // The id of the author
+      messageId: uuid.v1(), // A unique uuid
+      content: data.content, // Parsed from request body
+      attachment: data.attachment, // Parsed from request body
+      createdAt: Date.now(), // Current Unix timestamp
     },
   };
 
