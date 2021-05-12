@@ -6,8 +6,8 @@ export const main = handler(async (event, context) => {
   const params = {
     TableName: process.env.tableName,
     Key: {
-      userId: event.requestContext.identity.cognitoIdentityId, 
-      messageId: event.pathParameters.id, 
+      userId: event.requestContext.identity.cognitoIdentityId,
+      messageId: event.pathParameters.id,
     },
     UpdateExpression: "SET content = :content",
     ExpressionAttributeValues: {
