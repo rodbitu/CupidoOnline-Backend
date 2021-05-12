@@ -7,16 +7,12 @@ export const main = handler(async (event, context) => {
   const params = {
     TableName: process.env.tableName,
     Item: {
-      // The attributes of the item to be created
-      userId: event.requestContext.identity.cognitoIdentityId, // The id of the author
-      messageId: uuid.v1(), // A unique uuid
-      content: data.content, // Parsed from request body
-      attachment: data.attachment, // Parsed from request body
-      createdAt: Date.now(), // Current Unix timestamp
+      userId: event.requestContext.identity.cognitoIdentityId,
+      messageId: uuid.v4(),
+      content: data.content,
+      createdAt: Date.now(),
     },
   };
-
   await dynamoDb.put(params);
-
   return params.Item;
 });

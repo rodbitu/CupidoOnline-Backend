@@ -17,4 +17,3 @@ Resources:
       ResponseType: DEFAULT_5XX
       RestApiId:
         Ref: 'ApiGatewayRestApi'
-  - ${file(resources/api-gateway-errors.yml)}
