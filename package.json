@@ -4,7 +4,8 @@
   "description": "A Node.js starter for Serverless Framework with ES6 and TypeScript support",
   "main": "handler.js",
   "scripts": {
-    "test": "serverless-bundle test"
+    "test": "serverless-bundle test",
+    "start": "node src/functions/sendEmail.js"
   },
   "author": "",
   "license": "MIT",
@@ -19,6 +20,12 @@
     "serverless-offline": "^5.3.3"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^4.0.0",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.6.0",
     "uuid": "^7.0.3"
   }
 }
