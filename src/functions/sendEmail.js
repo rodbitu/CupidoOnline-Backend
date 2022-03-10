@@ -8,8 +8,8 @@ export const main = handler(async (event, context) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "cupido.online0@gmail.com",
-      pass: "123321123R",
+      user: "exemplo@gmail.com",
+      pass: "**********",
     },
     tls: {
       rejectUnauthorized: false,
